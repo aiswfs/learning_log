@@ -1,0 +1,12 @@
+<p>
+	<a href="{% url 'learning_logs:index' %}">学习日记</a> - 
+	<a href="{% url 'learning_logs:topics' %}">主题</a>-
+	{% if user.is_authenticated %}
+		hello,{{ user.username }}
+		<a href="{% url 'users:logout' %}">退出</a>
+	{% else %}
+		<a href="{% url 'users:register' %}">注册</a>-
+		<a href="{% url 'users:login' %}">登录</a>
+	{% endif %}
+</p>
+{% block content %}{% endblock content %}

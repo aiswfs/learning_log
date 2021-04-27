@@ -1,15 +1,19 @@
 {% extends "learning_logs/base.html" %}
-
+{% load bootstrap4 %}
+{% block page_header %}
+	<h2>登录你的账号。</h2>
+{% endblock page_header %}
 {% block content %}
 	{% if form.errors %}
 		<p>你的用户名和密码不匹配，重试一下？</p>
 	{% endif %}
 
-	<form method="post" action="{% url 'users:login' %}">
+	<form method="post" action="{% url 'users:login' %}" class="form">
 		{% csrf_token %}
-		{{ form.as_p }}
-
-		<button name="submit">登录</button>
+		{% bootstrap_form form %}
+		{% buttons %}
+			<button class="btn btn-primary" name="submit">登录</button>
+		{% endbuttons %}
 		<input type="hidden" name="next" value="{% url 'learning_logs:index' %}">
 	</form>
 {% endblock content %}

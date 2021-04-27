@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     #我的app
     'learning_logs',
     'users',
+
+    #第三方程序/库
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [

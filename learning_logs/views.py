@@ -22,7 +22,7 @@ def topic(request,topic_id): #URL模式
 	""""返回所有主题"""
 	topic = Topic.objects.get(id=topic_id)
 
-	if topic.owner != request.owner:
+	if topic.owner != request.user:
 		raise Http404
 
 	entries = topic.entry_set.order_by('-date_added')
@@ -73,7 +73,7 @@ def edit_entry(request,entry_id):
 	'''既有内容，又能添加内容'''
 	entry = Entry.objects.get(id=entry_id)
 	topic = entry.topic
-	if topic.owner != request.owner:
+	if topic.owner != request.user:
 		raise Http404	
 
 	if request.method != 'POST':
